@@ -1,5 +1,6 @@
 // use std::convert::TryFrom;
 
+#[derive(Debug, Eq, PartialEq)]
 pub enum Alpha {
     A = 0,
     B = 1,

@@ -11,6 +11,7 @@ pub struct Enigma {
     original_window_positions: [CipherChar; 3],
 }
 
+/// This struct tracks the rotation of a Rotor within the Enigma machine.
 struct RR {
     pub rotor: Rotor,
     pub window_position: CipherChar,
@@ -35,6 +36,14 @@ impl Enigma {
         for (i, pos) in self.original_window_positions.iter().enumerate() {
             self.rotors[i].window_position = *pos;
         }
+    }
+
+    pub fn get_window_positions(&self) -> [Alpha; 3] {
+        let mut positions = [Alpha::A; 3];
+        for (i, rr) in self.rotors.iter().enumerate() {
+            positions[i] = Alpha::try_from_usize(rr.window_position).unwrap();
+        }
+        positions
     }
 
     fn encipher(&self, letter: CipherChar) -> CipherChar {
@@ -75,7 +84,6 @@ impl Enigma {
         self.rotors[rotor_index].window_position = (self.rotors[rotor_index].window_position + 1) % 26;
     }
 }
-
 
 pub struct EnigmaBuilder {
     left_rotor: Option<Rotor>,
@@ -162,39 +170,5 @@ impl EnigmaBuilder {
             reflector: reflector,
             original_window_positions: window_positions,
         })
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use alpha::Alpha;
-    use rotor::Rotors;
-    use reflector::Reflectors;
-
-    #[test]
-    fn reciprocality() {
-        use alpha::Alpha::*;
-
-        let rotors = Rotors::new();
-        let reflectors = Reflectors::new();
-        let mut enigma = EnigmaBuilder::new()
-            .left_rotor(rotors.i.with_ring_setting(A))
-            .mid_rotor(rotors.ii.with_ring_setting(A))
-            .right_rotor(rotors.iii.with_ring_setting(A))
-            .window_positions([A, A, A])
-            .reflector(reflectors.b)
-            .build()
-            .unwrap();
-
-        let plaintext = Alpha::from_string("helloworld");
-        let ciphertext = enigma.message(&plaintext);
-        enigma.reset();
-        let deciphered = enigma.message(&ciphertext);
-
-        assert_eq!(
-            Alpha::to_string(plaintext),
-            Alpha::to_string(deciphered)
-        )
     }
 }
