@@ -25,6 +25,7 @@ impl Reflector {
 
 pub struct Reflectors {
     pub b: Reflector,
+    pub c: Reflector,
 }
 
 impl Reflectors {
@@ -32,15 +33,13 @@ impl Reflectors {
         Reflectors {
             b: Reflector {
                 cipher: cipher::from_string("YRUHQSLDPXNGOKMIEBFZCWVJAT")
-            }
+            },
+            c: Reflector {
+                cipher: cipher::from_string("FVPJIAOYEDRZXWGCTKUQSBNMHL")
+            },
         }
     }
 }
-
-// TODO?
-// fn from_pairs(pairs: &str) -> String {
-//
-// }
 
 #[cfg(test)]
 mod tests {
