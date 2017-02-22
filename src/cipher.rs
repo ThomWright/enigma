@@ -11,7 +11,8 @@ const ASCII_UPPERCASE_A: usize = 65;
 
 pub fn from_char(c: char) -> CipherChar {
     use std::ascii::AsciiExt;
-    assert!(c.is_ascii() && c.is_alphabetic(), "Char must be ascii and alphabetic");
+    assert!(c.is_ascii() && c.is_alphabetic(),
+            "Char must be ascii and alphabetic");
 
     c.to_ascii_uppercase() as CipherChar - ASCII_UPPERCASE_A
 }
@@ -24,20 +25,18 @@ pub fn from_string(cipher_str: &str) -> Cipher {
 
     for (i, v) in cipher_str.chars().enumerate() {
         let cipher_char = from_char(v);
-        assert!(
-            used_chars[cipher_char] == false,
-            "Cipher string must not contain duplicate characters"
-        );
+        assert!(used_chars[cipher_char] == false,
+                "Cipher string must not contain duplicate characters");
         used_chars[cipher_char] = true;
         cipher[i] = cipher_char;
-    };
+    }
     cipher
 }
 
 pub fn is_pairs(cipher: Cipher) -> bool {
     for (i, v) in cipher.iter().enumerate() {
         if cipher[*v] != i {
-            return false
+            return false;
         }
     }
     true
@@ -67,10 +66,9 @@ mod tests {
 
     #[test]
     fn cipher_creation() {
-        assert_eq!(
-            [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
-            from_string("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-        );
+        assert_eq!([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+                    22, 23, 24, 25],
+                   from_string("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
     }
 
     #[test]

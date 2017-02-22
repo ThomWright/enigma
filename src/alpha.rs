@@ -32,7 +32,9 @@ pub enum Alpha {
 impl Copy for Alpha {}
 
 impl Clone for Alpha {
-    fn clone(&self) -> Alpha { *self }
+    fn clone(&self) -> Alpha {
+        *self
+    }
 }
 
 impl From<Alpha> for usize {
@@ -81,7 +83,7 @@ impl Alpha {
         for c in s.chars() {
             match Alpha::try_from_char(c) {
                 Ok(a) => v.push(a),
-                Err(_) => {},
+                Err(_) => {}
             }
         }
         v
@@ -125,7 +127,7 @@ impl Alpha {
             'X' => Ok(X),
             'Y' => Ok(Y),
             'Z' => Ok(Z),
-            _ => Err("oh noes")
+            _ => Err("oh noes"),
         }
     }
 
@@ -158,7 +160,7 @@ impl Alpha {
             23 => Ok(X),
             24 => Ok(Y),
             25 => Ok(Z),
-            _ => Err("oh noes")
+            _ => Err("oh noes"),
         }
     }
 }

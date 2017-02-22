@@ -68,9 +68,9 @@ impl Enigma {
         let mut to_step = [false, false, true];
         for (i, rr) in self.rotors.iter().enumerate() {
             let engaged = rr.rotor.notch_engaged(rr.window_position);
-            if engaged&& i != 0 {
+            if engaged && i != 0 {
                 to_step[i] = true;
-                to_step[i-1] = true;
+                to_step[i - 1] = true;
             }
         }
         for (i, &should_step) in to_step.iter().enumerate() {
@@ -81,8 +81,8 @@ impl Enigma {
     }
 
     fn step(&mut self, rotor_index: usize) {
-        self.rotors[rotor_index].window_position =
-            (self.rotors[rotor_index].window_position + 1) % 26;
+        let curr_pos = self.rotors[rotor_index].window_position;
+        self.rotors[rotor_index].window_position = (curr_pos + 1) % 26;
     }
 }
 
@@ -98,7 +98,7 @@ pub struct EnigmaBuilder {
 
 impl EnigmaBuilder {
     pub fn new() -> EnigmaBuilder {
-        EnigmaBuilder{
+        EnigmaBuilder {
             left_rotor: None,
             mid_rotor: None,
             right_rotor: None,
@@ -142,24 +142,30 @@ impl EnigmaBuilder {
             None => return Err("Must supply initial rotor positions"),
         };
         let left_rotor = match self.left_rotor {
-            Some(r) => RR {
-                rotor: r,
-                window_position: window_positions[0]
-            },
+            Some(r) => {
+                RR {
+                    rotor: r,
+                    window_position: window_positions[0],
+                }
+            }
             None => return Err("Must supply left rotor"),
         };
         let mid_rotor = match self.mid_rotor {
-            Some(r) => RR {
-                rotor: r,
-                window_position: window_positions[1]
-            },
+            Some(r) => {
+                RR {
+                    rotor: r,
+                    window_position: window_positions[1],
+                }
+            }
             None => return Err("Must supply mid rotor"),
         };
         let right_rotor = match self.right_rotor {
-            Some(r) => RR {
-                rotor: r,
-                window_position: window_positions[2]
-            },
+            Some(r) => {
+                RR {
+                    rotor: r,
+                    window_position: window_positions[2],
+                }
+            }
             None => return Err("Must supply right rotor"),
         };
         let reflector = match self.reflector {

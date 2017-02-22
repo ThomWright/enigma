@@ -25,10 +25,7 @@ fn reciprocality() {
     enigma.reset();
     let deciphered = enigma.message(&ciphertext);
 
-    assert_eq!(
-        Alpha::to_string(plaintext),
-        Alpha::to_string(deciphered)
-    )
+    assert_eq!(Alpha::to_string(plaintext), Alpha::to_string(deciphered))
 }
 
 #[test]
@@ -68,13 +65,13 @@ fn stepping() {
         .unwrap();
 
     enigma.press(A);
-    assert_eq!([A,A,V], enigma.get_window_positions());
+    assert_eq!([A, A, V], enigma.get_window_positions());
 
     enigma.press(A);
-    assert_eq!([A,B,W], enigma.get_window_positions());
+    assert_eq!([A, B, W], enigma.get_window_positions());
 
     enigma.press(A);
-    assert_eq!([A,B,X], enigma.get_window_positions());
+    assert_eq!([A, B, X], enigma.get_window_positions());
 }
 
 #[test]
@@ -93,14 +90,14 @@ fn double_stepping() {
         .unwrap();
 
     enigma.press(A);
-    assert_eq!([A,D,V], enigma.get_window_positions());
+    assert_eq!([A, D, V], enigma.get_window_positions());
 
     enigma.press(A);
-    assert_eq!([A,E,W], enigma.get_window_positions());
+    assert_eq!([A, E, W], enigma.get_window_positions());
 
     enigma.press(A);
-    assert_eq!([B,F,X], enigma.get_window_positions());
+    assert_eq!([B, F, X], enigma.get_window_positions());
 
     enigma.press(A);
-    assert_eq!([B,F,Y], enigma.get_window_positions());
+    assert_eq!([B, F, Y], enigma.get_window_positions());
 }

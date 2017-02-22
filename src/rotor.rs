@@ -51,7 +51,7 @@ impl Rotor {
         let mut inverse = [0; 26];
         for (i, v) in wiring.into_iter().enumerate() {
             inverse[*v] = i;
-        };
+        }
         inverse
     }
 }

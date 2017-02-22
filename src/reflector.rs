@@ -13,9 +13,7 @@ pub struct Reflector {
 impl Reflector {
     pub fn new(cipher: Cipher) -> Reflector {
         assert!(is_pairs(cipher), "Reflector cipher must be in pairs");
-        Reflector {
-            cipher: cipher,
-        }
+        Reflector { cipher: cipher }
     }
 
     pub fn sub(&self, c: CipherChar) -> CipherChar {
@@ -31,12 +29,8 @@ pub struct Reflectors {
 impl Reflectors {
     pub fn new() -> Reflectors {
         Reflectors {
-            b: Reflector {
-                cipher: cipher::from_string("YRUHQSLDPXNGOKMIEBFZCWVJAT")
-            },
-            c: Reflector {
-                cipher: cipher::from_string("FVPJIAOYEDRZXWGCTKUQSBNMHL")
-            },
+            b: Reflector { cipher: cipher::from_string("YRUHQSLDPXNGOKMIEBFZCWVJAT") },
+            c: Reflector { cipher: cipher::from_string("FVPJIAOYEDRZXWGCTKUQSBNMHL") },
         }
     }
 }
