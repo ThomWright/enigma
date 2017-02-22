@@ -16,10 +16,6 @@ pub fn from_char(c: char) -> CipherChar {
     c.to_ascii_uppercase() as CipherChar - ASCII_UPPERCASE_A
 }
 
-pub fn to_char(n: CipherChar) -> char {
-    char::from((n + ASCII_UPPERCASE_A) as u8)
-}
-
 pub fn from_string(cipher_str: &str) -> Cipher {
     assert!(cipher_str.len() == 26, "String length must be 26");
 
@@ -53,8 +49,8 @@ mod tests {
 
     #[test]
     fn char_conversions() {
-        assert_eq!('A', to_char(from_char('a')));
-        assert_eq!('A', to_char(from_char('A')));
+        assert_eq!(0, from_char('a'));
+        assert_eq!(0, from_char('A'));
     }
 
     #[test]

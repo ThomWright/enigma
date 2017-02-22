@@ -51,8 +51,8 @@ mod tests {
         let cipher = Cipher::from_string("YRUHQSLDPXNGOKMIEBFZCWVJAT");
         let reflector = Reflector::new(cipher);
 
-        assert_eq!('Y', Cipher::to_char(reflector.sub(Cipher::from_char('A'))));
-        assert_eq!('A', Cipher::to_char(reflector.sub(Cipher::from_char('Y'))));
+        assert_eq!(24, reflector.sub(0));
+        assert_eq!(0, reflector.sub(24));
     }
 
     #[test]

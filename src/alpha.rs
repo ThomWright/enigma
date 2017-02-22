@@ -1,4 +1,3 @@
-// use std::convert::TryFrom;
 
 #[derive(Debug, Eq, PartialEq)]
 pub enum Alpha {
@@ -38,35 +37,7 @@ impl Clone for Alpha {
 
 impl From<Alpha> for usize {
     fn from(letter: Alpha) -> usize {
-        use alpha::Alpha::*;
-        match letter {
-            A => 0,
-            B => 1,
-            C => 2,
-            D => 3,
-            E => 4,
-            F => 5,
-            G => 6,
-            H => 7,
-            I => 8,
-            J => 9,
-            K => 10,
-            L => 11,
-            M => 12,
-            N => 13,
-            O => 14,
-            P => 15,
-            Q => 16,
-            R => 17,
-            S => 18,
-            T => 19,
-            U => 20,
-            V => 21,
-            W => 22,
-            X => 23,
-            Y => 24,
-            Z => 25,
-        }
+        letter as usize
     }
 }
 
@@ -191,40 +162,3 @@ impl Alpha {
         }
     }
 }
-
-// impl TryFrom<char> for Alpha {
-//     type Err = String;
-//     fn try_from(letter: char) -> Result<Self, Self::Err> {
-//         use alpha::Alpha::*;
-//         use std::ascii::AsciiExt;
-//         match letter.to_ascii_uppercase() {
-//             'A' => Ok(A),
-//             'B' => Ok(B),
-//             'C' => Ok(C),
-//             'D' => Ok(D),
-//             'E' => Ok(E),
-//             'F' => Ok(F),
-//             'G' => Ok(G),
-//             'H' => Ok(H),
-//             'I' => Ok(I),
-//             'J' => Ok(J),
-//             'K' => Ok(K),
-//             'L' => Ok(L),
-//             'M' => Ok(M),
-//             'N' => Ok(N),
-//             'O' => Ok(O),
-//             'P' => Ok(P),
-//             'Q' => Ok(Q),
-//             'R' => Ok(R),
-//             'S' => Ok(S),
-//             'T' => Ok(T),
-//             'U' => Ok(U),
-//             'V' => Ok(V),
-//             'W' => Ok(W),
-//             'X' => Ok(X),
-//             'Y' => Ok(Y),
-//             'Z' => Ok(Z),
-//             _ => Err("oh noes".to_string())
-//         }
-//     }
-// }

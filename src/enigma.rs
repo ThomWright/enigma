@@ -28,7 +28,7 @@ impl Enigma {
 
     pub fn press(&mut self, letter: Alpha) -> Alpha {
         self.step_and_turnover();
-        let result = self.encipher(usize::from(letter));
+        let result = self.encipher(CipherChar::from(letter));
         Alpha::try_from_usize(result).unwrap()
     }
 
@@ -81,7 +81,8 @@ impl Enigma {
     }
 
     fn step(&mut self, rotor_index: usize) {
-        self.rotors[rotor_index].window_position = (self.rotors[rotor_index].window_position + 1) % 26;
+        self.rotors[rotor_index].window_position =
+            (self.rotors[rotor_index].window_position + 1) % 26;
     }
 }
 
