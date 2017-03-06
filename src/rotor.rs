@@ -75,8 +75,8 @@ pub struct Rotors {
     pub v: RotorFactory,
 }
 
-impl Rotors {
-    pub fn new() -> Rotors {
+impl Default for Rotors {
+    fn default() -> Self {
         Rotors {
             i: RotorFactory {
                 wiring: cipher::from_string("EKMFLGDQVZNTOWYHXUSPAIBRCJ"),

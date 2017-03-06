@@ -1,5 +1,5 @@
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Debug, Eq, PartialEq, Clone, Copy)]
 pub enum Alpha {
     A = 0,
     B = 1,
@@ -27,14 +27,6 @@ pub enum Alpha {
     X = 23,
     Y = 24,
     Z = 25,
-}
-
-impl Copy for Alpha {}
-
-impl Clone for Alpha {
-    fn clone(&self) -> Alpha {
-        *self
-    }
 }
 
 impl From<Alpha> for usize {
@@ -77,24 +69,23 @@ impl From<Alpha> for char {
     }
 }
 
+pub fn to_string(v: &[Alpha]) -> String {
+    let mut cs = Vec::new();
+    for c in v {
+        cs.push(char::from(*c));
+    }
+    cs.into_iter().collect()
+}
+
 impl Alpha {
     pub fn from_string(s: &str) -> Vec<Alpha> {
         let mut v = Vec::new();
         for c in s.chars() {
-            match Alpha::try_from_char(c) {
-                Ok(a) => v.push(a),
-                Err(_) => {}
+            if let Ok(a) = Alpha::try_from_char(c) {
+                v.push(a)
             }
         }
         v
-    }
-
-    pub fn to_string(v: Vec<Alpha>) -> String {
-        let mut cs = Vec::new();
-        for c in v.iter() {
-            cs.push(char::from(*c));
-        }
-        cs.into_iter().collect()
     }
 
     pub fn try_from_char(c: char) -> Result<Alpha, &'static str> {

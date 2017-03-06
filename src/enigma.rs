@@ -18,7 +18,7 @@ struct RR {
 }
 
 impl Enigma {
-    pub fn message(&mut self, cipher_text: &Vec<Alpha>) -> Vec<Alpha> {
+    pub fn message(&mut self, cipher_text: &[Alpha]) -> Vec<Alpha> {
         let mut v = Vec::new();
         for l in cipher_text {
             v.push(self.press(*l));
@@ -55,7 +55,7 @@ impl Enigma {
             cipher_letter = (sub((cl + wp) % 26) + 26 - wp) % 26;
         }
         cipher_letter = self.reflector.sub(cipher_letter);
-        for rr in self.rotors.iter() {
+        for rr in &self.rotors {
             let cl = cipher_letter;
             let wp = rr.window_position;
             let sub = |l| rr.rotor.inverse_sub(l);
@@ -96,8 +96,8 @@ pub struct EnigmaBuilder {
     reflector: Option<Reflector>,
 }
 
-impl EnigmaBuilder {
-    pub fn new() -> EnigmaBuilder {
+impl Default for EnigmaBuilder {
+    fn default() -> Self {
         EnigmaBuilder {
             left_rotor: None,
             mid_rotor: None,
@@ -106,7 +106,9 @@ impl EnigmaBuilder {
             reflector: None,
         }
     }
+}
 
+impl EnigmaBuilder {
     pub fn left_rotor(mut self, rotor: Rotor) -> EnigmaBuilder {
         self.left_rotor = Some(rotor);
         self

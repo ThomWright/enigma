@@ -2,6 +2,7 @@ extern crate enigma;
 
 use enigma::EnigmaBuilder;
 use enigma::Alpha;
+use enigma::alphas_to_string;
 use enigma::Rotors;
 use enigma::Reflectors;
 
@@ -9,9 +10,9 @@ use enigma::Reflectors;
 fn reciprocality() {
     use enigma::Alpha::*;
 
-    let rotors = Rotors::new();
-    let reflectors = Reflectors::new();
-    let mut enigma = EnigmaBuilder::new()
+    let rotors = Rotors::default();
+    let reflectors = Reflectors::default();
+    let mut enigma = EnigmaBuilder::default()
         .left_rotor(rotors.i.with_ring_setting(A))
         .mid_rotor(rotors.ii.with_ring_setting(A))
         .right_rotor(rotors.iii.with_ring_setting(A))
@@ -25,16 +26,16 @@ fn reciprocality() {
     enigma.reset();
     let deciphered = enigma.message(&ciphertext);
 
-    assert_eq!(Alpha::to_string(plaintext), Alpha::to_string(deciphered))
+    assert_eq!(alphas_to_string(&plaintext), alphas_to_string(&deciphered))
 }
 
 #[test]
 fn simple_cipher() {
     use enigma::Alpha::*;
 
-    let rotors = Rotors::new();
-    let reflectors = Reflectors::new();
-    let mut enigma = EnigmaBuilder::new()
+    let rotors = Rotors::default();
+    let reflectors = Reflectors::default();
+    let mut enigma = EnigmaBuilder::default()
         .left_rotor(rotors.i.with_ring_setting(A))
         .mid_rotor(rotors.ii.with_ring_setting(A))
         .right_rotor(rotors.iii.with_ring_setting(A))
@@ -46,16 +47,16 @@ fn simple_cipher() {
     let plaintext = Alpha::from_string("AAAAA");
     let ciphertext = enigma.message(&plaintext);
 
-    assert_eq!("BDZGO", Alpha::to_string(ciphertext))
+    assert_eq!("BDZGO", alphas_to_string(&ciphertext))
 }
 
 #[test]
 fn stepping() {
     use enigma::Alpha::*;
 
-    let rotors = Rotors::new();
-    let reflectors = Reflectors::new();
-    let mut enigma = EnigmaBuilder::new()
+    let rotors = Rotors::default();
+    let reflectors = Reflectors::default();
+    let mut enigma = EnigmaBuilder::default()
         .left_rotor(rotors.i.with_ring_setting(A))
         .mid_rotor(rotors.ii.with_ring_setting(A))
         .right_rotor(rotors.iii.with_ring_setting(A))
@@ -78,9 +79,9 @@ fn stepping() {
 fn double_stepping() {
     use enigma::Alpha::*;
 
-    let rotors = Rotors::new();
-    let reflectors = Reflectors::new();
-    let mut enigma = EnigmaBuilder::new()
+    let rotors = Rotors::default();
+    let reflectors = Reflectors::default();
+    let mut enigma = EnigmaBuilder::default()
         .left_rotor(rotors.i.with_ring_setting(A))
         .mid_rotor(rotors.ii.with_ring_setting(A))
         .right_rotor(rotors.iii.with_ring_setting(A))

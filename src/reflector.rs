@@ -10,6 +10,7 @@ pub struct Reflector {
     cipher: Cipher,
 }
 
+
 impl Reflector {
     pub fn new(cipher: Cipher) -> Reflector {
         assert!(is_pairs(cipher), "Reflector cipher must be in pairs");
@@ -26,8 +27,8 @@ pub struct Reflectors {
     pub c: Reflector,
 }
 
-impl Reflectors {
-    pub fn new() -> Reflectors {
+impl Default for Reflectors {
+    fn default() -> Self {
         Reflectors {
             b: Reflector { cipher: cipher::from_string("YRUHQSLDPXNGOKMIEBFZCWVJAT") },
             c: Reflector { cipher: cipher::from_string("FVPJIAOYEDRZXWGCTKUQSBNMHL") },

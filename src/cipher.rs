@@ -18,14 +18,14 @@ pub fn from_char(c: char) -> CipherChar {
 }
 
 pub fn from_string(cipher_str: &str) -> Cipher {
-    assert!(cipher_str.len() == 26, "String length must be 26");
+    assert_eq!(cipher_str.len(), 26, "String length must be 26");
 
     let mut used_chars = [false; 26];
     let mut cipher = [0; 26];
 
     for (i, v) in cipher_str.chars().enumerate() {
         let cipher_char = from_char(v);
-        assert!(used_chars[cipher_char] == false,
+        assert!(!used_chars[cipher_char],
                 "Cipher string must not contain duplicate characters");
         used_chars[cipher_char] = true;
         cipher[i] = cipher_char;
