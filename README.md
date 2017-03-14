@@ -18,3 +18,7 @@ M3 Enigma machine
     - [X] Turnover
     - [X] Double stepping
 - [ ] Plugboard
+
+## License
+
+[MIT](LICENSE)
