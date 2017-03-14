@@ -1,5 +1,7 @@
 # Enigma
 
+[![Build Status](https://travis-ci.org/ThomWright/enigma.svg?branch=master)](https://travis-ci.org/ThomWright/enigma)
+
 M3 Enigma machine
 
 ## TODO
