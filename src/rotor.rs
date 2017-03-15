@@ -3,19 +3,24 @@ use cipher;
 use cipher::Cipher;
 use cipher::CipherChar;
 
-/// A Rotor implements an arbitrary substitution cipher using wires connecting the 26 inputs to the 26 outputs.
+/// A Rotor implements an arbitrary substitution cipher using wires connecting the 26 inputs to
+/// the 26 outputs.
 ///
 /// Each Rotor has an outer ring, and a core with the internal wiring.
 ///
-/// The outer ring has each letter of the alphabet written on it. One of these letters will be visible in the window of the Enigma machine. As a message is being typed, the rotors rotate or 'step', changing which letter is visible. The visible letter is known as the 'window position'.
+/// The outer ring has each letter of the alphabet written on it. One of these letters will be
+/// visible in the window of the Enigma machine. As a message is being typed, the rotors rotate or
+/// 'step', changing which letter is visible. The visible letter is known as the 'window position'.
 ///
-/// The Rotor's inner core can also be rotated with respect to the outer ring. This rotation is known as the 'ring setting' or 'Ringstellung'.
+/// The Rotor's inner core can also be rotated with respect to the outer ring. This rotation is
+/// known as the 'ring setting' or 'Ringstellung'.
 ///
 /// These two rotations affect the position of the internal wiring.
 ///
 /// There also is a notch set into the outer ring, which affects when the Rotors 'turnover'.
 ///
-/// This Rotor implementation is immutable. It does not keep track of its own rotation within the Enigma machine (the window position).
+/// This Rotor implementation is immutable. It does not keep track of its own rotation within the
+/// Enigma machine (the window position).
 pub struct Rotor {
     wiring: Cipher,
     inverse_wiring: Cipher,
