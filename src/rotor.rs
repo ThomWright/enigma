@@ -21,6 +21,7 @@ use cipher::CipherChar;
 ///
 /// This Rotor implementation is immutable. It does not keep track of its own rotation within the
 /// Enigma machine (the window position).
+#[derive(Debug, Copy, Clone)]
 pub struct Rotor {
     wiring: Cipher,
     inverse_wiring: Cipher,
@@ -61,6 +62,7 @@ impl Rotor {
     }
 }
 
+#[derive(Debug, Copy, Clone)]
 pub struct RotorFactory {
     wiring: Cipher,
     notch_position: CipherChar,
@@ -72,6 +74,7 @@ impl RotorFactory {
     }
 }
 
+#[derive(Debug, Copy, Clone)]
 pub struct Rotors {
     pub i: RotorFactory,
     pub ii: RotorFactory,

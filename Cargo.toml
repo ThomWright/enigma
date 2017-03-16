@@ -2,5 +2,15 @@
 name = "enigma"
 version = "0.1.0"
 authors = ["Thom Wright <github@thomwright.co.uk>"]
+repository = "https://github.com/ThomWright/enigma"
+homepage = "https://github.com/ThomWright/enigma"
+license = "MIT"
+readme = "README.md"
+description = "Implementation of a simple Enigma machine"
 
 [dependencies]
+clippy = {version = "0.0.21", optional = true}
+
+[features]
+default = []
+dev = ["clippy"]

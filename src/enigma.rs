@@ -4,6 +4,7 @@ use reflector::Reflector;
 use alpha::Alpha;
 use cipher::CipherChar;
 
+#[derive(Debug, Copy, Clone)]
 pub struct Enigma {
     rotors: [RR; 3], // from left to right
     reflector: Reflector,
@@ -12,6 +13,7 @@ pub struct Enigma {
 }
 
 /// This struct tracks the rotation of a Rotor within the Enigma machine.
+#[derive(Debug, Copy, Clone)]
 struct RR {
     pub rotor: Rotor,
     pub window_position: CipherChar,
@@ -86,6 +88,7 @@ impl Enigma {
     }
 }
 
+#[derive(Debug, Copy, Clone)]
 pub struct EnigmaBuilder {
     left_rotor: Option<Rotor>,
     mid_rotor: Option<Rotor>,

@@ -3,9 +3,10 @@ use cipher::Cipher;
 use cipher::CipherChar;
 use cipher::is_pairs;
 
-// A Reflector is a substitution cipher comprising 13 pairs.
-//
-// For example, an `AB` pair where `A -> B` and `B -> A`.
+/// A Reflector is a substitution cipher comprising 13 pairs.
+///
+/// For example, an `AB` pair where `A -> B` and `B -> A`.
+#[derive(Debug, Copy, Clone)]
 pub struct Reflector {
     cipher: Cipher,
 }
@@ -22,6 +23,7 @@ impl Reflector {
     }
 }
 
+#[derive(Debug, Copy, Clone)]
 pub struct Reflectors {
     pub b: Reflector,
     pub c: Reflector,
